@@ -1,0 +1,158 @@
+# ---- Gradle / Build ----
+.gradle/
+**/build/
+build/
+!gradle/wrapper/gradle-wrapper.jar
+!gradle/wrapper/gradle-wrapper.properties
+
+# Build directories
+app/build/
+*/build/
+
+# Android specific configurations
+*.properties
+!gradle.properties
+!gradle/wrapper/gradle-wrapper.properties
+
+# IDE (Android Studio / IntelliJ) - Consolidated
+.idea/
+*.iml
+*.iws
+*.ipr
+# Keep: .idea/runConfigurations/ (if needed for team)
+
+# Local machine / secrets
+local.properties
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# Generated / intermediates
+captures/
+**/intermediates/
+**/generated/
+**/tmp/
+**/outputs/
+**/navigation_json/
+**/merged_res/
+**/merged_res_blame_folder/
+
+# Kotlin / Java compiled
+*.class
+*.kt.metadata
+
+# Compose metrics & reports
+compose-metrics/
+compose-reports/
+**/composeApp/compileDebugKotlin/
+**/compose_compiler/
+
+# Packaging outputs
+*.apk
+*.ap_
+*.aab
+*.aar
+
+# Native / NDK
+obj/
+.cxx/
+.externalNativeBuild/
+
+# Logs & profiling
+*.log
+*.hprof
+
+# Lint
+lint/intermediates/
+lint/generated/
+lint/tmp/
+lint/reports/
+
+# Tests / coverage
+**/androidTest-results/
+**/test-results/
+**/reports/tests/
+**/outputs/code_coverage/
+**/jacoco.exec
+
+# Annotation processing / code gen
+**/kapt*/
+**/ksp*/
+**/generated/
+
+# Hilt specific (your project uses Hilt)
+**/hilt_aggregated_deps/
+**/dagger/hilt/
+
+# Room specific (your project uses Room)
+schemas/
+**/room/
+
+# Compose compiler (your project uses Compose)
+**/compose_compiler_metrics/
+**/compose_compiler_reports/
+
+# Keystores & signing (never commit real keys)
+*.jks
+*.keystore
+keystore.properties
+**/release/*.properties
+*.keystore.properties
+signing.properties
+key.properties
+
+# Privacy & Security (critical for privacy-first app)
+secrets/
+secrets.xml
+api_keys.xml
+config/secrets/
+**/config/release/
+*.pem
+*.p12
+
+# Environment & API keys
+.env
+.env.*
+*.env
+*.secret
+*.secrets
+secrets/**
+!.env.example
+!secrets/README.md
+
+# Keep Firebase config tracked
+!**/google-services.json
+
+# Fastlane: keep metadata, ignore transient outputs
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/test_output/
+fastlane/readme.md
+# Keep: fastlane/Fastfile, Appfile, metadata/* (not ignored)
+
+# GitHub Actions / CI caches
+.github/*.log
+.github/*-cache/
+# Sonar / static analysis
+.sonar/
+.scannerwork/
+
+# Modern Android tooling (AGP 8.x)
+**/incremental/
+**/tmp/kotlin-classes/
+**/kotlin/
+
+# Misc temporary
+*.tmp
+*.temp
+*.swp
+*~
+
+# Keep wrapper scripts
+!/gradlew
+!/gradlew.bat
+
+# Proguard configuration files
+proguard-rules.pro
+proguard-android-optimize.txt
