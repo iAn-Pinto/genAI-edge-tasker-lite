@@ -113,14 +113,19 @@ Then select the installed app on a device/emulator (Android 8+). Use the drawer 
 - Rapid Iteration: Keep embedding deterministic for reproducible tests.
 
 ## Suggested Next Implementation Steps
-1. Introduce Hilt & move Room database into `@Singleton` provider.
-2. Extract data layer into separate Gradle module.
-3. Replace CSV embedding persistence with vector table or sqlite-vec.
-4. Add Baseline Profile & macrobench for search throughput.
-5. Implement typed navigation & argument validation.
-6. Add Detekt + Ktlint & CI pipeline.
-7. Introduce dynamic color + dark theme.
-8. Add accessibility pass (labels, focus order, large text).
+See the detailed phased plan in `roadmap/`.
+
+Immediate Next Iteration (Phase 1.1)
+- Complete unit, DAO, and repository tests; target >80% coverage for domain/data
+- Add CI (GitHub Actions) for assemble + unit tests + lint
+- Add Detekt + Ktlint with baseline; fix critical issues
+- Enable R8/proguard for release builds
+
+Upcoming Phases
+- Phase 2: CI, Lint, and Release Hardening
+- Phase 3: Modularization & Architecture Evolution
+- Phase 4: Semantic Search Upgrade (TFLite or sqlite-vec)
+- Phase 5: Performance, Accessibility, and UX Polish
 
 ## Testing Strategy (Planned)
 | Layer | Test Type |
@@ -135,4 +140,14 @@ Then select the installed app on a device/emulator (Android 8+). Use the drawer 
 See [LICENSE](./LICENSE).
 
 ## Disclaimer
+## Roadmap
+
+Detailed blueprints are in the `roadmap/` folder:
+- `phase1-blueprint.md` — Foundation Architecture (implemented) + Phase 1.1 next iteration
+- `phase2-blueprint.md` — CI, Lint, and Release Hardening
+- `phase3-blueprint.md` — Modularization & Architecture Evolution
+- `phase4-blueprint.md` — Semantic Search Upgrade
+- `phase5-blueprint.md` — Performance, Accessibility, and UX Polish
+
+For background research and rationale, see `Android_Task_Manager_Architecture_Research_Perplexity_ai.md`.
 This project is an educational scaffold. Not production-hardened (security, performance, scalability) until the roadmap items are addressed.

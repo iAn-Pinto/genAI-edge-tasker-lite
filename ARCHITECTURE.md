@@ -88,3 +88,22 @@ This has been cleanly separated into:
 4. Add more sophisticated UI components
 5. Enhance the embedding model if needed
 6. Add performance monitoring and optimization
+
+## Architecture Evolution Plan (Phases 2–5)
+
+Planned Modularization (Phase 3)
+- core-model: pure Kotlin domain models
+- core-database: Room entities/DAOs/DB (+ schema exports, migration tests)
+- core-embedding: embedding generation and similarity utilities
+- data-repository: repository implementations and mappers
+- feature-task: task list/detail/add UI + ViewModel
+- feature-search: semantic search UI + ViewModel
+- app: shell, DI wiring, navigation
+
+Roadmap Alignment
+- Phase 2: CI, lint, release hardening (Detekt, Ktlint, Proguard/R8, CI)
+- Phase 3: Modularization and dependency boundaries
+- Phase 4: Semantic search upgrade (TFLite TextSearcher or sqlite-vec)
+- Phase 5: Baseline Profiles, macrobench, accessibility, i18n, adaptive UI
+
+See the `roadmap/` folder for detailed blueprints.
