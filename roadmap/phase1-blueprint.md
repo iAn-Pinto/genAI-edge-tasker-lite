@@ -617,3 +617,28 @@ This implementation **matches or exceeds** the architecture quality of leading A
 This blueprint provides a **production-ready foundation** for a privacy-first AI task management application.
 
 ---
+
+## Phase 1.1 — Immediate Next Iteration (2–4 days)
+
+Goal: Hardening and test completeness to ship next enhanced MVP.
+
+Scope
+- Complete unit tests for use cases (happy + error paths)
+- DAO tests for entities & queries
+- Repository tests with in-memory Room + fake embedding service
+- Add GitHub Actions CI: assemble, unit tests, Android Lint
+- Add Detekt + Ktlint; generate baseline; fix critical findings
+- Enable R8/Proguard for release; add minimal keep rules
+- Stub Baseline Profile module for later macrobenchmarking
+
+Acceptance Criteria
+- CI succeeds on push/PR: assembleDebug and test tasks green
+- Static analysis (Detekt/Ktlint) has no errors (warnings allowed)
+- >80% coverage for domain and repository packages
+- Release build with minifyEnabled true completes successfully
+
+Implementation Notes
+- Place CI under .github/workflows/android.yml
+- Add detekt and ktlint plugins in app/build.gradle.kts and configuration in root
+- Add proguard-rules.pro and adjust `buildTypes.release { minifyEnabled true }`
+- Create :baselineprofile module later (Phase 5); keep stub notes in README
