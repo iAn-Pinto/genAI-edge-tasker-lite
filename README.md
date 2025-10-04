@@ -1,4 +1,4 @@
-# Privy Task AI (Android 14)
+# GenAI Tasker Lite (Android 14)
 
 A minimal Android 14 (SDK 34) Jetpack Compose sample showcasing an offline-first task manager with lightweight semantic search.
 
