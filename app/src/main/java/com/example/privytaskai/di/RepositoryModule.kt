@@ -1,7 +1,9 @@
 package com.example.privytaskai.di
 
 import com.example.privytaskai.data.repository.TaskRepositoryImpl
+import com.example.privytaskai.data.repository.DocumentRepositoryImpl
 import com.example.privytaskai.domain.repository.TaskRepository
+import com.example.privytaskai.domain.repository.DocumentRepository
 import com.example.privytaskai.privacy.PrivacyAuditor
 import com.example.privytaskai.privacy.PrivacyAuditorImpl
 import dagger.Binds
@@ -18,6 +20,11 @@ abstract class RepositoryModule {
         taskRepositoryImpl: TaskRepositoryImpl
     ): TaskRepository
     
+    @Binds
+    abstract fun bindDocumentRepository(
+        documentRepositoryImpl: DocumentRepositoryImpl
+    ): DocumentRepository
+
     @Binds
     abstract fun bindPrivacyAuditor(
         privacyAuditorImpl: PrivacyAuditorImpl

@@ -1,4 +1,8 @@
-# ---- Gradle / Build ----
+# =====================================
+# Android Studio / Gradle Project
+# =====================================
+
+# Gradle files
 .gradle/
 **/build/
 build/
@@ -9,26 +13,48 @@ build/
 app/build/
 */build/
 
-# Android specific configurations
-*.properties
-!gradle.properties
-!gradle/wrapper/gradle-wrapper.properties
-
-# IDE (Android Studio / IntelliJ) - Consolidated
+# =====================================
+# IDE (Android Studio / IntelliJ)
+# =====================================
 .idea/
 *.iml
 *.iws
 *.ipr
-# Keep: .idea/runConfigurations/ (if needed for team)
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/gradle.xml
+.idea/assetWizardSettings.xml
+.idea/dictionaries
+.idea/libraries
+# Keep shared run configurations if needed
+# !.idea/runConfigurations/
 
-# Local machine / secrets
+# =====================================
+# Local Machine Specific
+# =====================================
 local.properties
+*.properties
+!gradle.properties
+!gradle/wrapper/gradle-wrapper.properties
 
-# OS junk
+# =====================================
+# OS Generated Files
+# =====================================
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
+*~
 
-# Generated / intermediates
+# =====================================
+# Android Generated Files
+# =====================================
+bin/
+gen/
+out/
 captures/
 **/intermediates/
 **/generated/
@@ -37,122 +63,161 @@ captures/
 **/navigation_json/
 **/merged_res/
 **/merged_res_blame_folder/
+**/incremental/
+**/kotlin/
 
-# Kotlin / Java compiled
+# =====================================
+# Compiled Files
+# =====================================
 *.class
+*.dex
 *.kt.metadata
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
 
-# Compose metrics & reports
-compose-metrics/
-compose-reports/
-**/composeApp/compileDebugKotlin/
-**/compose_compiler/
-
-# Packaging outputs
+# =====================================
+# APK / AAB / Build Outputs
+# =====================================
 *.apk
 *.ap_
 *.aab
 *.aar
+!**/libs/*.aar
+!**/libs/*.jar
 
+# =====================================
 # Native / NDK
+# =====================================
+*.so
+*.o
+*.a
 obj/
 .cxx/
 .externalNativeBuild/
+cmake-build-*/
 
-# Logs & profiling
+# =====================================
+# ML Models (CRITICAL - Large Files)
+# =====================================
+# Never commit large ML model files (179MB+)
+# These should be downloaded via script
+*.tflite
+!**/test/**/*.tflite
+# Exception: very small test models only
+# *.onnx
+# *.pb
+# *.pth
+
+# Tokenizer models are usually small but can add to .gitattributes for LFS if needed
+# tokenizer.model
+
+# =====================================
+# Logs & Profiling
+# =====================================
 *.log
 *.hprof
+*.trace
 
+# =====================================
+# Testing & Coverage
+# =====================================
+**/androidTest-results/
+**/test-results/
+**/reports/
+**/jacoco.exec
+**/coverage/
+**/code_coverage/
+
+# =====================================
 # Lint
+# =====================================
 lint/intermediates/
 lint/generated/
 lint/tmp/
 lint/reports/
+lint-results*.xml
 
-# Tests / coverage
-**/androidTest-results/
-**/test-results/
-**/reports/tests/
-**/outputs/code_coverage/
-**/jacoco.exec
-
-# Annotation processing / code gen
+# =====================================
+# Code Generation (Annotation Processing)
+# =====================================
 **/kapt*/
+**/kaptKotlin/
 **/ksp*/
 **/generated/
+**/ap_generated_sources/
 
-# Hilt specific (your project uses Hilt)
+# =====================================
+# Hilt (Dagger) Generated
+# =====================================
 **/hilt_aggregated_deps/
 **/dagger/hilt/
 
-# Room specific (your project uses Room)
+# =====================================
+# Room Database
+# =====================================
 schemas/
 **/room/
+*.db
+*.db-shm
+*.db-wal
 
-# Compose compiler (your project uses Compose)
-**/compose_compiler_metrics/
-**/compose_compiler_reports/
+# =====================================
+# Compose Compiler
+# =====================================
+**/compose_compiler/
+compose-metrics/
+compose-reports/
+**/composeApp/compileDebugKotlin/
 
-# Keystores & signing (never commit real keys)
+# =====================================
+# Signing & Keystore (NEVER COMMIT!)
+# =====================================
 *.jks
 *.keystore
 keystore.properties
 **/release/*.properties
 *.keystore.properties
-signing.properties
 key.properties
+signing.properties
 
-# Privacy & Security (critical for privacy-first app)
-secrets/
-secrets.xml
-api_keys.xml
-config/secrets/
-**/config/release/
-*.pem
-*.p12
+# =====================================
+# Firebase / Google Services
+# =====================================
+# google-services.json (uncomment if sensitive)
+# GoogleService-Info.plist
 
-# Environment & API keys
-.env
-.env.*
-*.env
-*.secret
-*.secrets
-secrets/**
-!.env.example
-!secrets/README.md
+# =====================================
+# Kotlin / Java
+# =====================================
+*.kotlin_module
+*.kotlin_metadata
 
-# Keep Firebase config tracked
-!**/google-services.json
-
-# Fastlane: keep metadata, ignore transient outputs
-fastlane/report.xml
-fastlane/Preview.html
-fastlane/test_output/
-fastlane/readme.md
-# Keep: fastlane/Fastfile, Appfile, metadata/* (not ignored)
-
-# GitHub Actions / CI caches
-.github/*.log
-.github/*-cache/
-# Sonar / static analysis
-.sonar/
-.scannerwork/
-
-# Modern Android tooling (AGP 8.x)
-**/incremental/
-**/tmp/kotlin-classes/
-**/kotlin/
-
-# Misc temporary
+# =====================================
+# Temporary / Backup Files
+# =====================================
+*~
+*.swp
+*.bak
 *.tmp
 *.temp
-*.swp
-*~
 
-# Keep wrapper scripts
-!/gradlew
-!/gradlew.bat
+# =====================================
+# External Tools
+# =====================================
+# External tool builders
+.externalToolBuilders/
 
-# Proguard configuration files
-proguard-rules.pro
-proguard-android-optimize.txt
+# Locally stored "Eclipse launch configurations"
+*.launch
+
+# =====================================
+# Project Specific
+# =====================================
+# Downloaded models (user should download via script)
+app/src/main/assets/embeddinggemma*.tflite
+app/src/main/assets/*.tflite
+!app/src/main/assets/README.md
+
+# Keep tokenizer model if small enough (< 5MB)
+# Uncomment if too large:
+# app/src/main/assets/tokenizer.model

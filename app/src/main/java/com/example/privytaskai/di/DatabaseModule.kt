@@ -5,6 +5,8 @@ import androidx.room.Room
 import com.example.privytaskai.data.database.database.TaskDatabase
 import com.example.privytaskai.data.database.dao.TaskDao
 import com.example.privytaskai.data.database.dao.EmbeddingDao
+import com.example.privytaskai.data.database.dao.DocumentDao
+import com.example.privytaskai.data.database.migrations.Migrations
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +25,9 @@ object DatabaseModule {
             context,
             TaskDatabase::class.java,
             "task_database"
-        ).build()
+        )
+        .addMigrations(Migrations.MIGRATION_1_2)  // Add the migration instead of destructive fallback
+        .build()
     }
     
     @Provides
@@ -31,4 +35,7 @@ object DatabaseModule {
     
     @Provides
     fun provideEmbeddingDao(database: TaskDatabase): EmbeddingDao = database.embeddingDao()
+
+    @Provides
+    fun provideDocumentDao(database: TaskDatabase): DocumentDao = database.documentDao()
 }
