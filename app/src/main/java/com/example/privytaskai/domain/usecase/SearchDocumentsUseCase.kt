@@ -25,13 +25,14 @@ class SearchDocumentsUseCase @Inject constructor(
     }
 
     /**
-     * Search documents by semantic similarity
+     * Execute a semantic search
      *
-     * @param query Search query (natural language)
+     * @param query Search query text
      * @param topK Number of results to return
      * @param minScore Minimum similarity score (0-1)
      * @return List of search results sorted by relevance
      */
+    @Suppress("unused") // Public API for search functionality
     suspend fun execute(
         query: String,
         topK: Int = DEFAULT_TOP_K,
@@ -69,6 +70,7 @@ class SearchDocumentsUseCase @Inject constructor(
      * Get search suggestions based on query
      * Returns document titles that match
      */
+    @Suppress("unused") // Public API for search suggestions
     suspend fun getSuggestions(
         query: String,
         limit: Int = 5
@@ -83,4 +85,3 @@ class SearchDocumentsUseCase @Inject constructor(
         }
     }
 }
-

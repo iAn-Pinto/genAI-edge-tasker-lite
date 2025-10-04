@@ -35,13 +35,10 @@ class IndexDocumentUseCase @Inject constructor(
     }
 
     /**
-     * Index a PDF document from URI
-     *
-     * @param uri Content URI of PDF file
-     * @param title Document title
-     * @param documentType Type of document
-     * @return Result with document ID
+     * Index a document from an input stream
+     * Returns the document ID on success
      */
+    @Suppress("unused") // Public API for document indexing
     suspend fun execute(
         uri: Uri,
         title: String,

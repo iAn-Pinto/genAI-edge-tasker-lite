@@ -10,23 +10,34 @@ import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
+/**
+ * Module providing repository implementations
+ */
 @Module
 @InstallIn(SingletonComponent::class)
+@Suppress("unused") // Hilt module used via annotation processing
 abstract class RepositoryModule {
     
     @Binds
+    @Singleton
+    @Suppress("unused") // Hilt binding used via annotation processing
     abstract fun bindTaskRepository(
-        taskRepositoryImpl: TaskRepositoryImpl
+        impl: TaskRepositoryImpl
     ): TaskRepository
     
     @Binds
+    @Singleton
+    @Suppress("unused") // Hilt binding used via annotation processing
     abstract fun bindDocumentRepository(
-        documentRepositoryImpl: DocumentRepositoryImpl
+        impl: DocumentRepositoryImpl
     ): DocumentRepository
 
     @Binds
+    @Singleton
+    @Suppress("unused") // Hilt binding used via annotation processing
     abstract fun bindPrivacyAuditor(
-        privacyAuditorImpl: PrivacyAuditorImpl
+        impl: PrivacyAuditorImpl
     ): PrivacyAuditor
 }

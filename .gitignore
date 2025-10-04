@@ -7,7 +7,6 @@
 **/build/
 build/
 !gradle/wrapper/gradle-wrapper.jar
-!gradle/wrapper/gradle-wrapper.properties
 
 # Build directories
 app/build/
@@ -26,8 +25,6 @@ app/build/
 .idea/assetWizardSettings.xml
 .idea/dictionaries
 .idea/libraries
-# Keep shared run configurations if needed
-# !.idea/runConfigurations/
 
 # =====================================
 # Local Machine Specific
@@ -35,7 +32,6 @@ app/build/
 local.properties
 *.properties
 !gradle.properties
-!gradle/wrapper/gradle-wrapper.properties
 
 # =====================================
 # OS Generated Files
@@ -47,7 +43,6 @@ local.properties
 .Trashes
 ehthumbs.db
 Thumbs.db
-*~
 
 # =====================================
 # Android Generated Files
@@ -57,7 +52,6 @@ gen/
 out/
 captures/
 **/intermediates/
-**/generated/
 **/tmp/
 **/outputs/
 **/navigation_json/
@@ -100,16 +94,8 @@ cmake-build-*/
 # ML Models (CRITICAL - Large Files)
 # =====================================
 # Never commit large ML model files (179MB+)
-# These should be downloaded via script
 *.tflite
 !**/test/**/*.tflite
-# Exception: very small test models only
-# *.onnx
-# *.pb
-# *.pth
-
-# Tokenizer models are usually small but can add to .gitattributes for LFS if needed
-# tokenizer.model
 
 # =====================================
 # Logs & Profiling
@@ -143,7 +129,6 @@ lint-results*.xml
 **/kapt*/
 **/kaptKotlin/
 **/ksp*/
-**/generated/
 **/ap_generated_sources/
 
 # =====================================
@@ -184,7 +169,6 @@ signing.properties
 # Firebase / Google Services
 # =====================================
 # google-services.json (uncomment if sensitive)
-# GoogleService-Info.plist
 
 # =====================================
 # Kotlin / Java
@@ -195,7 +179,6 @@ signing.properties
 # =====================================
 # Temporary / Backup Files
 # =====================================
-*~
 *.swp
 *.bak
 *.tmp
@@ -204,10 +187,7 @@ signing.properties
 # =====================================
 # External Tools
 # =====================================
-# External tool builders
 .externalToolBuilders/
-
-# Locally stored "Eclipse launch configurations"
 *.launch
 
 # =====================================
@@ -217,7 +197,3 @@ signing.properties
 app/src/main/assets/embeddinggemma*.tflite
 app/src/main/assets/*.tflite
 !app/src/main/assets/README.md
-
-# Keep tokenizer model if small enough (< 5MB)
-# Uncomment if too large:
-# app/src/main/assets/tokenizer.model

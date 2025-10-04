@@ -1,6 +1,5 @@
 package com.example.privytaskai.data.pdf
 
-import android.net.Uri
 import android.util.Log
 import com.itextpdf.text.pdf.PdfReader
 import com.itextpdf.text.pdf.parser.PdfTextExtractor
@@ -114,4 +113,3 @@ class PDFReader {
         )
     }
 }
-

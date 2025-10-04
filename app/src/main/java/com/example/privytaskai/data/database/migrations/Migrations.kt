@@ -99,6 +99,7 @@ object Migrations {
      * Helper: Clear all embeddings (forces regeneration)
      * Use this if you want clean slate with new model
      */
+    @Suppress("unused") // Utility function for maintenance
     fun clearAllEmbeddings(database: SupportSQLiteDatabase) {
         database.execSQL("DELETE FROM embeddings")
     }

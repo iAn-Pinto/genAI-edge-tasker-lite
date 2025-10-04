@@ -23,6 +23,7 @@ class EmbeddingModelTester(private val context: Context) {
      * Run all tests and log results
      * Returns true if all tests pass
      */
+    @Suppress("unused") // Public API for manual testing
     suspend fun runAllTests(): Boolean = withContext(Dispatchers.Default) {
         val results = mutableListOf<Boolean>()
         

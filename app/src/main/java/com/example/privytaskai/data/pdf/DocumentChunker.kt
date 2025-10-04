@@ -158,9 +158,10 @@ class DocumentChunker(
     }
 
     /**
-     * Chunk by paragraph instead of sentences
-     * Useful for documents with clear paragraph structure
+     * Chunk by paragraph (simpler alternative)
+     * Less sophisticated but faster
      */
+    @Suppress("unused") // Alternative chunking strategy
     fun chunkByParagraph(
         text: String,
         metadata: Map<String, String> = emptyMap()
@@ -193,4 +194,3 @@ class DocumentChunker(
         return chunks
     }
 }
-

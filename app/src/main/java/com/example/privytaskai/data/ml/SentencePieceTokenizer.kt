@@ -134,6 +134,7 @@ class SentencePieceTokenizer(
      * Decode token IDs back to text (approximate)
      * Note: This won't be perfect with hash-based IDs
      */
+    @Suppress("unused") // Public API for future use
     fun decode(ids: LongArray, skipSpecialTokens: Boolean = true): String {
         if (!initialized) {
             throw IllegalStateException("Tokenizer not initialized")

@@ -34,6 +34,7 @@ class EmbeddingTest @Inject constructor(
      * Run comprehensive test suite
      * Checks initialization, embedding generation, similarity
      */
+    @Suppress("unused") // Public API for testing
     fun runBasicTest(scope: CoroutineScope) {
         scope.launch(Dispatchers.IO) {
             try {
@@ -146,6 +147,7 @@ class EmbeddingTest @Inject constructor(
     /**
      * Quick smoke test - just verify model loads
      */
+    @Suppress("unused") // Public API for testing
     fun runQuickTest(scope: CoroutineScope, onComplete: (Boolean) -> Unit) {
         scope.launch(Dispatchers.IO) {
             try {
@@ -166,6 +168,7 @@ class EmbeddingTest @Inject constructor(
     /**
      * Benchmark test - measure performance across different text lengths
      */
+    @Suppress("unused") // Public API for testing
     fun runBenchmark(scope: CoroutineScope) {
         scope.launch(Dispatchers.IO) {
             try {
