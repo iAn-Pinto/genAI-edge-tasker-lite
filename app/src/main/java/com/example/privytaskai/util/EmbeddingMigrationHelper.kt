@@ -19,7 +19,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class EmbeddingMigrationHelper @Inject constructor(
-    @ApplicationContext private val context: Context,
+    @Suppress("UNUSED_PARAMETER") @ApplicationContext private val context: Context,
     private val taskDao: TaskDao,
     private val embeddingDao: EmbeddingDao,
     private val embeddingService: LocalEmbeddingService
@@ -117,4 +117,3 @@ class EmbeddingMigrationHelper @Inject constructor(
         }
     }
 }
-

@@ -4,9 +4,6 @@ import android.content.Context
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
-import java.io.BufferedReader
-import java.io.InputStreamReader
-import java.nio.charset.StandardCharsets
 
 /**
  * Android-compatible tokenizer for EmbeddingGemma
@@ -19,7 +16,7 @@ import java.nio.charset.StandardCharsets
  * sufficient for semantic embeddings.
  */
 class SentencePieceTokenizer(
-    private val context: Context
+    @Suppress("UNUSED_PARAMETER") private val context: Context
 ) {
     private var vocabulary: Map<String, Int> = emptyMap()
     private var reverseVocabulary: Map<Int, String> = emptyMap()
