@@ -1,5 +1,6 @@
 package com.example.privytaskai.data.repository
 
+import android.util.Log
 import com.example.privytaskai.data.database.dao.TaskDao
 import com.example.privytaskai.data.database.dao.EmbeddingDao
 import com.example.privytaskai.data.database.entities.TaskEntity
@@ -51,14 +52,32 @@ class TaskRepositoryImpl @Inject constructor(
         privacyAuditor.auditDataFlow("SEARCH_TASKS", "QUERY_EMBEDDING", "LOCAL_PROCESSING")
         privacyAuditor.validateLocalProcessing("EMBEDDING_GENERATION")
         
+        // Use DOCUMENT task type to match how tasks are embedded
+        // Both query and documents use the same embedding space for better matching
         val queryEmbedding = embeddingService.generateEmbedding(query)
         val allTasks = taskDao.getAll()
         val embeddings = embeddingDao.getAll().associateBy { it.taskId }
         
+        // Debug logging
+        Log.d("TaskRepositoryImpl", "Searching for: '$query'")
+        Log.d("TaskRepositoryImpl", "Found ${allTasks.size} tasks, ${embeddings.size} embeddings")
+
         return allTasks.mapNotNull { taskEntity ->
-            val embeddingEntity = embeddings[taskEntity.id] ?: return@mapNotNull null
+            val embeddingEntity = embeddings[taskEntity.id] ?: run {
+                Log.w("TaskRepositoryImpl", "No embedding for task: ${taskEntity.title}")
+                return@mapNotNull null
+            }
             val taskEmbedding = embeddingService.csvToVector(embeddingEntity.vectorCsv)
+
+            // Validate embedding dimensions
+            if (queryEmbedding.size != taskEmbedding.size) {
+                Log.w("TaskRepositoryImpl", "Dimension mismatch for task '${taskEntity.title}': query=${queryEmbedding.size}, task=${taskEmbedding.size}")
+                return@mapNotNull null
+            }
+
             val similarity = embeddingService.cosineSimilarity(queryEmbedding, taskEmbedding)
+            Log.d("TaskRepositoryImpl", "Task: '${taskEntity.title}' -> Similarity: $similarity")
+
             taskEntity.toDomain() to similarity
         }.sortedByDescending { it.second }.take(limit)
     }

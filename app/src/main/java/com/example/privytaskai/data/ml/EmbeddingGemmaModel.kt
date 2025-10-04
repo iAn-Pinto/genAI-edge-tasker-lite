@@ -159,17 +159,16 @@ class EmbeddingGemmaModel(
             // Tokenize using proper SentencePiece tokenizer
             val (inputIds, attentionMask) = tokenizer.encode(promptedText, addSpecialTokens = true)
 
-            // Prepare input tensors as 2D arrays
+            // Prepare input tensor as 2D array (batch_size=1, seq_length=512)
             val inputIdsArray = Array(1) { inputIds }
-            val attentionMaskArray = Array(1) { attentionMask }
 
             // Prepare output tensor
             val output = Array(1) { FloatArray(EMBEDDING_DIM) }
             
-            // Run inference
+            // Run inference - EmbeddingGemma only needs input_ids (no attention mask)
             val startTime = System.currentTimeMillis()
             currentInterpreter.runForMultipleInputsOutputs(
-                arrayOf(inputIdsArray, attentionMaskArray),
+                arrayOf(inputIdsArray),  // Only pass input_ids
                 mapOf(0 to output)
             )
             val inferenceTime = System.currentTimeMillis() - startTime

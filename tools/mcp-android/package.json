@@ -1,0 +1,17 @@
+{
+  "name": "mcp-android-tools",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Minimal MCP server exposing safe Android emulator/app tools (adb + gradle) for this project",
+  "type": "module",
+  "bin": {
+    "mcp-android-tools": "index.js"
+  },
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.6.0"
+  }
+}
+

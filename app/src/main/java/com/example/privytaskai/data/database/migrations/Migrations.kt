@@ -80,7 +80,8 @@ object Migrations {
                     startIndex INTEGER NOT NULL,
                     endIndex INTEGER NOT NULL,
                     embeddingCsv TEXT NOT NULL,
-                    metadataJson TEXT NOT NULL
+                    metadataJson TEXT NOT NULL,
+                    FOREIGN KEY(documentId) REFERENCES documents(id) ON DELETE CASCADE
                 )
                 """.trimIndent()
             )

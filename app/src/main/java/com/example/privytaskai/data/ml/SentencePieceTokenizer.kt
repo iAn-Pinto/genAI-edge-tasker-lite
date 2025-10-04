@@ -73,12 +73,12 @@ class SentencePieceTokenizer(
      *
      * @param text Input text
      * @param addSpecialTokens Whether to add BOS/EOS tokens
-     * @return Pair of (input_ids, attention_mask)
+     * @return Pair of (input_ids, attention_mask) as IntArray (INT32 for TFLite)
      */
     fun encode(
         text: String,
         addSpecialTokens: Boolean = true
-    ): Pair<LongArray, LongArray> {
+    ): Pair<IntArray, IntArray> {
         if (!initialized) {
             throw IllegalStateException("Tokenizer not initialized. Call initialize() first.")
         }
@@ -89,12 +89,12 @@ class SentencePieceTokenizer(
         // Convert to IDs (using hash for dynamic vocab)
         var ids = tokens.map { token ->
             // Use hash of token for consistent ID generation
-            (Math.abs(token.hashCode()) % 30000 + 100).toLong()
-        }.toLongArray()
+            (Math.abs(token.hashCode()) % 30000 + 100)
+        }.toIntArray()
 
         // Add special tokens
         if (addSpecialTokens) {
-            ids = longArrayOf(BOS_TOKEN_ID.toLong()) + ids + longArrayOf(EOS_TOKEN_ID.toLong())
+            ids = intArrayOf(BOS_TOKEN_ID) + ids + intArrayOf(EOS_TOKEN_ID)
         }
 
         // Truncate if too long
@@ -103,13 +103,13 @@ class SentencePieceTokenizer(
         }
 
         // Create attention mask (1 for real tokens, 0 for padding)
-        val attentionMask = LongArray(ids.size) { 1L }
+        val attentionMask = IntArray(ids.size) { 1 }
 
         // Pad to max length
         if (ids.size < MAX_LENGTH) {
             val padLength = MAX_LENGTH - ids.size
-            ids = ids + LongArray(padLength) { PAD_TOKEN_ID.toLong() }
-            val paddedMask = attentionMask + LongArray(padLength) { 0L }
+            ids = ids + IntArray(padLength) { PAD_TOKEN_ID }
+            val paddedMask = attentionMask + IntArray(padLength) { 0 }
             return Pair(ids, paddedMask)
         }
 
